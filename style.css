@@ -1,0 +1,17 @@
+body, html, .container {
+    margin: 0;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.library {
+    flex: auto;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+}
