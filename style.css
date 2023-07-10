@@ -15,3 +15,11 @@ body, html, .container {
     align-items: center;
     justify-content: center;
 }
+
+.rows {
+    display: grid;
+}
+
+.hidden {
+    display: none;
+}
