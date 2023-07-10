@@ -14,7 +14,20 @@
                 <button class="add-book" type="button">+Add a book</button>
             </div>
             <div class="library">
-                
+                <form action="" class="rows hidden">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="title"  required>
+                    <label for="author">Author:</label>
+                    <input type="text" name="author" id="author" required>
+                    <label for="num-of-pages">Number of pages:</label>
+                    <input type="number" name="number-of-pages" id="num-of-pages" min="1" required>
+                    <label for="read">Read:</label>
+                    <input type="text" name="read" id="read" required>
+                    <div class="form-buttons">
+                        <button class="cancel" type="reset">cancel</button>
+                        <button class="add" type="button">add</button>
+                    </div>
+                </form>
             </div>
             <div class="footer">
                 link to github and credit
