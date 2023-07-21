@@ -53,7 +53,7 @@ function addBookToLibrary(title, author, numOfPages, read) {
   myLibrary.push(book);
 }
 
-function displayBookInfo(){
+function displayBookInfo() {
   const bookCard = document.createElement('div');
   let arrayLength = myLibrary.length;
   for (let i = arrayLength - 1; i < arrayLength; i++) {
@@ -67,7 +67,7 @@ function displayBookInfo(){
       bookCard.appendChild(info);
     }
     removeBtn(bookCard);
-    changeStatusBtn(bookCard, i);
+    changeStatusBtn(bookCard);
     bookCard.classList.add('book')
     bookCard.setAttribute('data-index-number', i);
   }  
