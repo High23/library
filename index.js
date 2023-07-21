@@ -20,7 +20,8 @@ addButton.addEventListener('click', () => {
   const title = allInputs[0].value;
   const author = allInputs[1].value;
   const pages = allInputs[2].value;
-  let read = document.querySelector('[name=read]:checked');
+  let read = document.querySelector('[name=read]:checked'); // Either returns a tag or it does not depending on user selection
+  // Checks if read exists or not to set its value
   read ? read = 'Read': read = 'Not read yet';
   if (title === '' || author === '' || pages === ''){
     return;
@@ -38,19 +39,20 @@ cancelButton.addEventListener('click', () => {
   addBookButton.disabled = false;
 });
 
+// Constructor
 
-// Functions
-
-function Book(title, author, numOfPages, read) {
-  this.title = title;
-  this.author = author;
-  this.numOfPages = numOfPages;
-  this.read = read;
+class Book {
+  constructor(title, author, numOfPages, read) {
+    this.title = title;
+    this.author = author;
+    this.numOfPages = numOfPages;
+    this.read = read;
+  }
 }
 
+// Functions
 function addBookToLibrary(title, author, numOfPages, read) {
-  const book = new Book(title, author, numOfPages, read);
-  myLibrary.push(book);
+  myLibrary.push(new Book(title, author, numOfPages, read));
 }
 
 function displayBookInfo(){
