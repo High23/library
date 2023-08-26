@@ -7,35 +7,24 @@ const allInputs = document.querySelectorAll('input');
 const addBookButton = document.querySelector('.add-book');
 const addButton = document.querySelector('.add');
 const cancelButton = document.querySelector('.cancel');
-
+const titleSpan = document.getElementById('title-span');
+const authorSpan = document.getElementById('author-span');
+const pagesSpan = document.getElementById('pages-span');
 
 // Button event listeners
 
 addBookButton.addEventListener('click', () => {
   form.classList.remove('hidden');
   addBookButton.disabled = true;
-});
-
-addButton.addEventListener('click', () => {
-  const title = allInputs[0].value;
-  const author = allInputs[1].value;
-  const pages = allInputs[2].value;
-  let read = document.querySelector('[name=read]:checked');
-  read ? read = 'Read': read = 'Not read yet';
-  if (title === '' || author === '' || pages === ''){
-    return;
-  } else {
-    addBookToLibrary(title, author, pages, read);
-    displayBookInfo();
-    form.classList.toggle('hidden');
-    addBookButton.disabled = false;
-    clearInputs(allInputs);
-  }
+  validateForm();
 });
 
 cancelButton.addEventListener('click', () => {
   form.classList.toggle('hidden');
   addBookButton.disabled = false;
+  titleSpan.textContent = '';
+  authorSpan.textContent = '';
+  pagesSpan.textContent = '';
 });
 
 
@@ -133,4 +122,60 @@ function updateDataIndexNumber() {
   status.forEach((status, value) => {
     status.setAttribute('data-index-number', value);
   })
+}
+
+// Validation
+
+function validateForm() {
+  const authorInput = document.getElementById('author');
+  const pagesInput = document.getElementById('num-of-pages');
+  const titleInput = document.getElementById('title');
+
+  let title;
+  let author;
+  let pages;
+
+  titleInput.addEventListener('input', () => {
+    if (titleInput.validity.valueMissing) {
+      titleSpan.textContent = 'The title cannot be empty';
+      return;
+    }
+    titleSpan.textContent = '';
+    title = titleInput.value;
+  });
+
+  authorInput.addEventListener('input', () => {
+    if (authorInput.validity.valueMissing) {
+      authorSpan.textContent = 'The author name cannot be empty';
+      return;
+    }
+    authorSpan.textContent = '';
+    author = authorInput.value;
+  });
+  
+  pagesInput.addEventListener('input', () => {
+    if (pagesInput.validity.rangeUnderflow) {
+      pagesSpan.textContent = 'The amount of pages cannot be zero';
+      return;
+    } else if (pagesInput.validity.valueMissing) {
+      pagesSpan.textContent = 'The amount of pages cannot be empty';
+      return;
+    }
+    pagesSpan.textContent = '';
+    pages = pagesInput.value;
+  });
+
+  addButton.addEventListener('click', () => {
+    let read = document.querySelector('[name=read]:checked');
+    read ? read = 'Read': read = 'Not read yet';
+    if (!titleInput.validity.valid || !authorInput.validity.valid || !pagesInput.validity.valid) {
+      return;
+    } else {
+      addBookToLibrary(title, author, pages, read);
+      displayBookInfo();
+      form.classList.toggle('hidden');
+      addBookButton.disabled = false;
+      clearInputs(allInputs);
+    }
+  });
 }
