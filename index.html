@@ -14,13 +14,16 @@
                 <button class="add-book" type="button">+Add a book</button>
             </div>
             <div class="library">
-                <form action="" class="rows hidden">
+                <form action="" class="rows hidden" novalidate>
                     <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" autocomplete="off" required>
+                    <input type="text" name="title" id="title" autocomplete="off" minlength="1" placeholder="Titanic" required>
+                    <span aria-live="polite" id="title-span"></span>
                     <label for="author">Author:</label>
-                    <input type="text" name="author" id="author" autocomplete="off" required>
+                    <input type="text" name="author" id="author" autocomplete="off" minlength="1" placeholder="Filson Young" required>
+                    <span aria-live="polite" id="author-span"></span>
                     <label for="num-of-pages">Number of pages:</label>
-                    <input type="number" name="number-of-pages" id="num-of-pages" min="1" required>
+                    <input type="number" name="number-of-pages" id="num-of-pages" min="1" max="10000" placeholder="96" required>
+                    <span aria-live="polite" id="pages-span"></span>
                     <div class="checkbox">
                         <input type="checkbox" name="read" id="read">
                         <label for="read">read</label>
